@@ -1,13 +1,11 @@
 package test_jvm.test_threadpool;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class TestExecutors {
     public static class MyThread extends Thread {
-        public MyThread(@NotNull String name) {
+        public MyThread(String name) {
             super(name);
         }
 

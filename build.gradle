@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.30'
 }
 
 group 'andytest.com'
@@ -9,11 +9,38 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
+
+    // apache snapshots
+    maven { url 'https://maven.aliyun.com/repository/apache-snapshots' }
+    // central
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    // google
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    // gradle-plugin
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    // jcenter
+    maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    // spring
+    maven { url 'https://maven.aliyun.com/repository/spring' }
+    // spring-plugin
+    maven { url 'https://maven.aliyun.com/repository/spring-plugin' }
+    // public
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    // releases
+    maven { url 'https://maven.aliyun.com/repository/releases' }
+    // snapshots
+    maven { url 'https://maven.aliyun.com/repository/snapshots' }
+    // grails-core
+    maven { url 'https://maven.aliyun.com/repository/grails-core' }
+    // mapr-public
+    maven { url 'https://maven.aliyun.com/repository/mapr-public' }
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
+//    compile 'com.squareup.okhttp3:okhttp:3.14.0'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
