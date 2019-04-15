@@ -1,17 +1,24 @@
 package test_jvm.test_volatile;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class UseAtomicInteger {
-    public  AtomicInteger inc = new AtomicInteger();
+public class TestReentrantLock {
+    public int inc = 0;
+    Lock lock = new ReentrantLock();
 
-    public  void increase() {
-        inc.getAndIncrement();
-        System.out.println(Thread.currentThread() + "inc:" + inc);
+    public void increase() {
+        lock.lock();
+        try {
+            inc++;
+            System.out.println(Thread.currentThread() + "inc:" + inc);
+        } finally {
+            lock.unlock();
+        }
     }
 
     public static void main(String[] args) {
-        final UseAtomicInteger test = new UseAtomicInteger();
+        final TestReentrantLock test = new TestReentrantLock();
         int currentCount = Thread.activeCount();
         System.out.println("Thread.activeCount():" + Thread.activeCount());
         for (int i = 0; i < 10; i++) {
@@ -25,6 +32,6 @@ public class UseAtomicInteger {
             //保证前面的线程都执行完
             Thread.yield();
         }
-        System.out.println(test.inc);
+        System.out.println(test.inc); // 100
     }
 }
