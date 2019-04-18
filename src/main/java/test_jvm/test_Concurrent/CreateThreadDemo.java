@@ -30,7 +30,7 @@ public class CreateThreadDemo {
             @Override
             public String call() throws Exception {
                 LogUtils.d("Callable 1");
-                Thread.sleep(3000);
+                Thread.sleep(300);
                 LogUtils.d("Callable 2");
                 return "通过实现Callable接口";
             }
