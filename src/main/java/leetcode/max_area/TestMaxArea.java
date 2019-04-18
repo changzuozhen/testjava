@@ -1,5 +1,7 @@
 package leetcode.max_area;
 
+import utils.LogUtils;
+
 /**
  * 695. Max Area of Island (Easy)
  * https://leetcode.com/problems/max-area-of-island/description/
@@ -49,7 +51,7 @@ public class TestMaxArea {
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}};
 
-        System.out.println("max:" + tool.maxAreaOfIsland(area));
+        LogUtils.d("max:" + tool.maxAreaOfIsland(area));
     }
 
 }

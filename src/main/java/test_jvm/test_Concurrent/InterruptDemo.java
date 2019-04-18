@@ -1,5 +1,7 @@
 package test_jvm.test_Concurrent;
 
+import utils.LogUtils;
+
 /**
  * sleepThread isInterrupted: false
  * busyThread isInterrupted: true
@@ -34,8 +36,8 @@ public class InterruptDemo {
         busyThread.interrupt();
         while (sleepThread.isInterrupted()) ;
         //当抛出InterruptedException时候，会清除中断标志位，也就是说在调用isInterrupted会返回false。
-        System.out.println("sleepThread isInterrupted: " + sleepThread.isInterrupted());
-        System.out.println("busyThread isInterrupted: " + busyThread.isInterrupted());
+        LogUtils.d("sleepThread isInterrupted: " + sleepThread.isInterrupted());
+        LogUtils.d("busyThread isInterrupted: " + busyThread.isInterrupted());
 
 
     }

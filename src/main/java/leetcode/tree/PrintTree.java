@@ -1,5 +1,7 @@
 package leetcode.tree;
 
+import utils.LogUtils;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -85,7 +87,7 @@ class Wrapper {
 
     public static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
         if (node == null) {
-            System.out.println("Empty leetcode.tree");
+            LogUtils.d("Empty leetcode.tree");
             return;
         }
 
@@ -93,7 +95,7 @@ class Wrapper {
             prettyPrintTree(node.right, prefix + (isLeft ? "│   " : "    "), false);
         }
 
-        System.out.println(prefix + (isLeft ? "└── " : "┌── ") + node.val);
+        LogUtils.d(prefix + (isLeft ? "└── " : "┌── ") + node.val);
 
         if (node.left != null) {
             prettyPrintTree(node.left, prefix + (isLeft ? "    " : "│   "), true);

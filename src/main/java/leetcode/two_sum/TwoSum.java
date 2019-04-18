@@ -1,6 +1,7 @@
 package leetcode.two_sum;
 
 import leetcode.commonutils.Utils;
+import utils.LogUtils;
 
 import java.io.IOException;
 
@@ -55,7 +56,7 @@ public class TwoSum {
         int[] intlist2 = Utils.stringToIntegerArray(line);
 
         ListNode result = new Solution().addTwoNumbers(convert(intlist), convert(intlist2));
-        System.out.println(result.toString());
+        LogUtils.d(result.toString());
     }
 
     private static ListNode convert(int[] intlist) {

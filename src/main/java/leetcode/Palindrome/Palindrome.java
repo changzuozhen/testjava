@@ -1,5 +1,7 @@
 package leetcode.Palindrome;
 
+import utils.LogUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,6 @@ public class Palindrome {
     public static void main(String[] args) {
         String s = "aabcac";
         //[[a, a, b, c, a, c], [a, a, b, cac], [aa, b, c, a, c], [aa, b, cac]]
-        System.out.println(new Palindrome().partition(s));
+        LogUtils.d(new Palindrome().partition(s));
     }
 }

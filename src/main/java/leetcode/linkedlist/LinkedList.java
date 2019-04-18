@@ -1,6 +1,7 @@
 package leetcode.linkedlist;
 
 import leetcode.commonutils.Utils;
+import utils.LogUtils;
 
 import java.io.IOException;
 class ListNode {
@@ -35,9 +36,9 @@ class Wrapper {
         }
 
         if (node != null) {
-            System.out.println(node.val);
+            LogUtils.d(node.val);
         } else {
-            System.out.println("Empty leetcode.linkedlist.LinkedList");
+            LogUtils.d("Empty leetcode.linkedlist.LinkedList");
         }
     }
 }

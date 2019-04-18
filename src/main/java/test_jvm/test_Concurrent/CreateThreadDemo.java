@@ -1,5 +1,7 @@
 package test_jvm.test_Concurrent;
 
+import utils.LogUtils;
+
 import java.util.concurrent.*;
 
 public class CreateThreadDemo {
@@ -9,7 +11,7 @@ public class CreateThreadDemo {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                System.out.println("继承Thread");
+                LogUtils.d("继承Thread");
                 super.run();
             }
         };
@@ -18,7 +20,7 @@ public class CreateThreadDemo {
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("实现runable接口");
+                LogUtils.d("实现runable接口");
             }
         });
         thread1.start();
@@ -27,17 +29,24 @@ public class CreateThreadDemo {
         Future<String> future = service.submit(new Callable() {
             @Override
             public String call() throws Exception {
+                LogUtils.d("Callable 1");
+                Thread.sleep(3000);
+                LogUtils.d("Callable 2");
                 return "通过实现Callable接口";
             }
         });
         try {
+            LogUtils.d("Callable 0");
             String result = future.get();
-            System.out.println(result);
+            LogUtils.d("Callable 4");
+            LogUtils.d(result);
+            LogUtils.d("Callable 5");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        service.shutdown();
     }
 
 }

@@ -1,5 +1,7 @@
 package leetcode;
 
+import utils.LogUtils;
+
 /**
  * Sudoku Solver (Hard)
  * 数独
@@ -71,13 +73,13 @@ public class SudokuSolver {
         };
 
         for (int i = 0; i < sudoku.length; i++) {
-            System.out.println(sudoku[i]);
+            LogUtils.d(sudoku[i]);
         }
 
-        System.out.println("---------");
+        LogUtils.d("---------");
         new SudokuSolver().solveSudoku(sudoku);
         for (int i = 0; i < sudoku.length; i++) {
-            System.out.println(sudoku[i]);
+            LogUtils.d(sudoku[i]);
         }
     }
 }

@@ -1,5 +1,7 @@
 package test_jvm.test_Concurrent;
 
+import utils.LogUtils;
+
 /**
  * i am alive
  * finally block
@@ -12,12 +14,12 @@ public class DaemonDemo {
             public void run() {
                 while (true) {
                     try {
-                        System.out.println("i am alive");
+                        LogUtils.d("i am alive");
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     } finally {
-                        System.out.println("finally block");
+                        LogUtils.d("finally block");
                         //守护线程在退出的时候并不会执行finnaly块中的代码，所以将释放资源等操作不要放在finnaly块中执行，这种操作是不安全的
                     }
                 }

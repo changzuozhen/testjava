@@ -1,5 +1,7 @@
 package test_jvm.test_Concurrent;
 
+import utils.LogUtils;
+
 public class VolatileDemo {
     private static volatile boolean isOver = false;
 
@@ -7,9 +9,9 @@ public class VolatileDemo {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("start");
+                LogUtils.d("start");
                 while (!isOver) ;
-                System.out.println("over");
+                LogUtils.d("over");
             }
         });
         thread.start();

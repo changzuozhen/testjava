@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.CoroutineStart
+import utils.log
 import java.util.concurrent.Executors
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
@@ -11,9 +12,6 @@ import kotlin.coroutines.ContinuationInterceptor
 /**
  * https://mp.weixin.qq.com/s/JR0APULIDOoz9kLVBgM9zQ
  */
-val dateFormat = SimpleDateFormat("HH:mm:ss:SSS")
-val now = { dateFormat.format(Date(System.currentTimeMillis())) }
-fun log(msg: Any?) = println("${now()} [${Thread.currentThread().name}] $msg")
 suspend fun main() {
 //    defaultTest()
 //    atomicTest()

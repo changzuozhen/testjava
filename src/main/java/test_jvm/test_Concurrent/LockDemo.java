@@ -1,5 +1,7 @@
 package test_jvm.test_Concurrent;
 
+import utils.LogUtils;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 public class LockDemo {
@@ -12,7 +14,7 @@ public class LockDemo {
                 lock.lock();
                 try {
                     Thread.sleep(500);
-                    System.out.println("i:"+ finalI);
+                    LogUtils.d("i:"+ finalI);
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

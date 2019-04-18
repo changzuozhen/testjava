@@ -1,5 +1,7 @@
 package test_jvm.test_threadpool;
 
+import utils.LogUtils;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -11,7 +13,7 @@ public class TestExecutors {
 
         @Override
         public void run() {
-            System.out.println(Thread.currentThread().getName() + "正在执行.... MyName:" + getName());
+            LogUtils.d(Thread.currentThread().getName() + "正在执行.... MyName:" + getName());
         }
     }
 

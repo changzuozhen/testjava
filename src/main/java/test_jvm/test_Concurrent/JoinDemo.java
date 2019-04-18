@@ -1,6 +1,8 @@
 package test_jvm.test_Concurrent;
 
 
+import utils.LogUtils;
+
 /**
  * main terminated.
  * Thread-0 terminated.
@@ -36,7 +38,7 @@ public class JoinDemo {
         public void run() {
             try {
                 thread.join();
-                System.out.println(thread.getName() + " terminated.");
+                LogUtils.d(thread.getName() + " terminated.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

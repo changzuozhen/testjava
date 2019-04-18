@@ -1,5 +1,7 @@
 package test_jvm;
 
+import utils.LogUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -26,22 +28,22 @@ public class TestFinal {
         Person jordan = new Person("Chicago");
 
         modify(jordan, "firstName", "Michael");
-        System.out.println(jordan.firstName); //Mike
+        LogUtils.d(jordan.firstName); //Mike
 
         modify(jordan, "lastName", "Michael");
-        System.out.println(jordan.lastName); //Michael
+        LogUtils.d(jordan.lastName); //Michael
 
         modify(jordan, "age", 51f);
-        System.out.println(jordan.age); //50.5
+        LogUtils.d(jordan.age); //50.5
 
         modify(jordan, "height", 1.98f);
-        System.out.println(jordan.height); //1.98
+        LogUtils.d(jordan.height); //1.98
 
         modify(jordan, "address", new Address("ccc", "ddd"));
-        System.out.println(jordan.address.line1); //ccc
+        LogUtils.d(jordan.address.line1); //ccc
 
         modify(jordan, "city", "Miami");
-        System.out.println(jordan.city); //Miami
+        LogUtils.d(jordan.city); //Miami
     }
 }
 

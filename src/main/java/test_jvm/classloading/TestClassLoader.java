@@ -1,6 +1,8 @@
 
 package test_jvm.classloading;
 
+import utils.LogUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -36,48 +38,48 @@ public class TestClassLoader {
         };
 
         // TestClassLoader.class.newInstance();
-        System.out.println("-------TestClassLoader.class.newInstance()");
+        LogUtils.d("-------TestClassLoader.class.newInstance()");
         Object obj0 = TestClassLoader.class.newInstance();
         Object obj0class = obj0.getClass();
-        System.out.println(obj0.getClass());
-        System.out.println("obj0class:" + obj0class);
-        System.out.println(obj0 instanceof TestClassLoader);
-        System.out.println("obj0 class loader:" + obj0.getClass().getClassLoader());
-        System.out.println(obj0.hashCode());
-        System.out.println(obj0.getClass().hashCode());
+        LogUtils.d(obj0.getClass());
+        LogUtils.d("obj0class:" + obj0class);
+        LogUtils.d(obj0 instanceof TestClassLoader);
+        LogUtils.d("obj0 class loader:" + obj0.getClass().getClassLoader());
+        LogUtils.d(obj0.hashCode());
+        LogUtils.d(obj0.getClass().hashCode());
 
         // 使用ClassLoaderTest的类加载器加载本类
-        System.out.println("-------使用ClassLoaderTest的类加载器加载本类");
+        LogUtils.d("-------使用ClassLoaderTest的类加载器加载本类");
         Object obj1 = TestClassLoader.class.getClassLoader().loadClass("test_jvm.classloading.TestClassLoader").newInstance();
         Object obj1class = obj1.getClass();
-        System.out.println(obj1.getClass());
-        System.out.println("obj1class:" + obj1class);
-        System.out.println(obj1 instanceof TestClassLoader);
-        System.out.println("obj1 class loader:" + obj1.getClass().getClassLoader());
-        System.out.println(obj1.hashCode());
-        System.out.println(obj1.getClass().hashCode());
+        LogUtils.d(obj1.getClass());
+        LogUtils.d("obj1class:" + obj1class);
+        LogUtils.d(obj1 instanceof TestClassLoader);
+        LogUtils.d("obj1 class loader:" + obj1.getClass().getClassLoader());
+        LogUtils.d(obj1.hashCode());
+        LogUtils.d(obj1.getClass().hashCode());
 
         // 使用SystemClassLoader加载本类
-        System.out.println("-------使用SystemClassLoader加载本类");
+        LogUtils.d("-------使用SystemClassLoader加载本类");
         Object obj2 = ClassLoader.getSystemClassLoader().loadClass("test_jvm.classloading.TestClassLoader").newInstance();
         Object obj2class = obj2.getClass();
-        System.out.println(obj2.getClass());
-        System.out.println("obj2class:" + obj2class);
-        System.out.println(obj2 instanceof TestClassLoader);
-        System.out.println("obj2 class loader:" + obj2.getClass().getClassLoader());
-        System.out.println(obj2.hashCode());
-        System.out.println(obj2.getClass().hashCode());
+        LogUtils.d(obj2.getClass());
+        LogUtils.d("obj2class:" + obj2class);
+        LogUtils.d(obj2 instanceof TestClassLoader);
+        LogUtils.d("obj2 class loader:" + obj2.getClass().getClassLoader());
+        LogUtils.d(obj2.hashCode());
+        LogUtils.d(obj2.getClass().hashCode());
 
         // 使用自定义类加载器加载本类
-        System.out.println("-------使用自定义类加载器加载本类");
+        LogUtils.d("-------使用自定义类加载器加载本类");
         Object obj3 = myLoader.loadClass("test_jvm.classloading.TestClassLoader").newInstance();
         Object obj3class = obj3.getClass();
-        System.out.println(obj3.getClass());
-        System.out.println("obj3class:" + obj3class);
-        System.out.println(obj3 instanceof TestClassLoader);
-        System.out.println("obj3 class loader:" + obj3.getClass().getClassLoader());
-        System.out.println(obj3.hashCode());
-        System.out.println(obj3.getClass().hashCode());
+        LogUtils.d(obj3.getClass());
+        LogUtils.d("obj3class:" + obj3class);
+        LogUtils.d(obj3 instanceof TestClassLoader);
+        LogUtils.d("obj3 class loader:" + obj3.getClass().getClassLoader());
+        LogUtils.d(obj3.hashCode());
+        LogUtils.d(obj3.getClass().hashCode());
     }
 }
 
