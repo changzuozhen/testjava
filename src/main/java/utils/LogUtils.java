@@ -16,54 +16,52 @@ public class LogUtils {
     public static final String ANSI_YELLOW = "\u001B[93m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final int[] colorIndex = {
-            90,
-            1,
+//            90,
+//            1,
             30,
             4,
+            100,
             7,
+            40,
             34,
-            94,
+            44,
             36,
+            46,
             96,
-            32,
-            33,
+//            106,
             93,
-            35,
+            103,
+//            35,
+//            45,
             95,
-            91,
+//            105,
+//            91,
+//            101,
             31,
+            41,
     };
 
 
     private static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSS");
 
     public static String color(int index) {
-        return "\u001B[" + colorIndex[index % colorIndex.length] + "m";
-//        switch (index % 7) {
-//            case 0:
-//                return ANSI_BLUE;
-//            case 1:
-//                return ANSI_CYAN;
-//            case 2:
-//                return ANSI_GREEN;
-//            case 3:
-//                return ANSI_WHITE;
-//            case 4:
-//                return ANSI_YELLOW;
-//            case 5:
-//                return ANSI_PURPLE;
-//            case 6:
-//                return ANSI_RED;
-//        }
-//        return ANSI_WHITE;
+//        index = (index % colorIndex.length + colorIndex.length) % colorIndex.length;
+        return "\u001B["
+                + colorIndex[index]
+//                + index
+                + "m";
     }
 
 
-    public static void log(CharSequence msg, int colorindex) {
+    public static void log(Object msg, int colorindex) {
+        colorindex = (colorindex % colorIndex.length + colorIndex.length) % colorIndex.length;
         StackTraceElement ste = new Throwable().getStackTrace()[1];
         String log = build(msg, ste);
-        System.out.println(color(colorindex) + log + ANSI_RESET);
-//                + "\t\t" + colorIndex[colorindex%colorIndex.length]);
+        System.out.println(color(colorindex)
+                + String.format("color:%3d\t", colorIndex[colorindex])
+                + log
+                + ANSI_RESET
+        );
     }
 
     /**

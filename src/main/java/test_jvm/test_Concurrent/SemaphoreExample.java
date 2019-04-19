@@ -8,8 +8,8 @@ import java.util.concurrent.Semaphore;
 
 public class SemaphoreExample {
     public static void main(String[] args) {
-        final int clientCount = 3;
-        final int totalRequestCount = 10;
+        final int clientCount = 2;
+        final int totalRequestCount = 20;
         Semaphore semaphore = new Semaphore(clientCount);
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < totalRequestCount; i++) {
@@ -19,17 +19,18 @@ public class SemaphoreExample {
             int finalI = i;
             executorService.execute(() -> {
                 try {
-                    LogUtils.log("semaphore acquiere   i:" + finalI + " ava:" + semaphore.availablePermits(), finalI + 4);
+                    LogUtils.log("semaphore acquiere  A i:" + finalI + " ava:" + semaphore.availablePermits(), finalI + 4);
                     semaphore.acquire();
 
-                    LogUtils.log("semaphore acquiered  i:" + finalI + " ava:" + semaphore.availablePermits(), finalI);
-                    Thread.sleep(300);
-                    LogUtils.log("semaphore acquiered  i:" + finalI + " ava:" + semaphore.availablePermits(), finalI);
+                    LogUtils.log("semaphore acquiered B i:" + finalI + " ava:" + semaphore.availablePermits(), finalI + 4);
+//                    Thread.sleep(300);
+//                    LogUtils.log("semaphore acquiered C i:" + finalI + " ava:" + semaphore.availablePermits(), finalI + 4);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    LogUtils.log("semaphore release    i:" + finalI + " ava:" + semaphore.availablePermits(), finalI);
+//                    LogUtils.log("semaphore release   D i:" + finalI + " ava:" + semaphore.availablePermits(), finalI + 4);
                     semaphore.release();
+                    LogUtils.log("semaphore release   E i:" + finalI + " ava:" + semaphore.availablePermits(), finalI + 4);
                 }
             });
         }

@@ -28,8 +28,8 @@ public class Test {
         base.log();
         LogUtils.d("base.a:" + ((Derived) base).a);
 
-//        for (int i = 0; i < 255; i++) {
-//            LogUtils.log("i:" + i, i);
-//        }
+        for (int i = 0; i < 255; i++) {
+            LogUtils.log("i:" + i, i);
+        }
     }
 }
