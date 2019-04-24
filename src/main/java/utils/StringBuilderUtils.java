@@ -51,4 +51,19 @@ public class StringBuilderUtils {
         result.append(']');
         return result;
     }
+
+    public static StringBuilder multiply(CharSequence charSequence, int times) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < times; i++) {
+            stringBuilder.append(charSequence);
+        }
+        return stringBuilder;
+    }
+
+    public static StringBuilder multiply(StringBuilder stringBuilder, CharSequence charSequence, int times) {
+        for (int i = 0; i < times; i++) {
+            stringBuilder.append(charSequence);
+        }
+        return stringBuilder;
+    }
 }

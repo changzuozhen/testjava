@@ -17,21 +17,24 @@ import java.util.concurrent.Executors;
 
 public class CyclicBarrierExample {
     public static void main(String[] args) throws InterruptedException {
-        final int totalThread = 10;
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(totalThread);
+        final int totalThread = 9;
+        final int barrier = 3;
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(barrier);
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < totalThread; i++) {
             int finalI = i;
             executorService.execute(() -> {
-                LogUtils.d("before.." + finalI);
+                LogUtils.log("before.. i:" + finalI + " WaitingNO:" + cyclicBarrier.getNumberWaiting(), finalI);
                 try {
+                    Thread.sleep(100 * finalI);
+                    LogUtils.log("-await.. i:" + finalI + " WaitingNO:" + cyclicBarrier.getNumberWaiting(), finalI);
                     cyclicBarrier.await();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (BrokenBarrierException e) {
                     e.printStackTrace();
                 }
-                LogUtils.d("after.. " + finalI);
+                LogUtils.log("after..  i:" + finalI + " WaitingNO:" + cyclicBarrier.getNumberWaiting(), finalI);
             });
         }
         executorService.shutdown();

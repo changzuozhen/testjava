@@ -27,9 +27,5 @@ public class Test {
         LogUtils.d("base.a:" + base.a);
         base.log();
         LogUtils.d("base.a:" + ((Derived) base).a);
-
-        for (int i = 0; i < 255; i++) {
-            LogUtils.log("i:" + i, i);
-        }
     }
 }
