@@ -12,6 +12,8 @@ package 设计模式_design_pattern.行为型;
  * Menento：备忘录，存储原始对象的的状态。备忘录实际上有两个接口，一个是提供给 Caretaker 的窄接口：它只能将备忘录传递给其它对象；一个是提供给 Originator 的宽接口，允许它访问到先前状态所需的所有数据。理想情况是只允许 Originator 访问本备忘录的内部状态。
  * <p>
  * Originator Interface
+ * <p>
+ * Originator Interface
  */
 
 /**

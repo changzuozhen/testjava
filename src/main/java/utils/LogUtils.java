@@ -7,15 +7,6 @@ import java.util.Date;
 public class LogUtils {
     public static final boolean SHOWCOLORINFO = true;
 
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[90m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_WHITE = "\u001B[30m";
-    public static final String ANSI_PURPLE = "\u001B[95m";
-    public static final String ANSI_YELLOW = "\u001B[93m";
-    public static final String ANSI_RED = "\u001B[31m";
     public static final int[] colorIndex = {
             // 黑
             30, // 0
@@ -44,6 +35,12 @@ public class LogUtils {
             31, //13
             41, //14
     };
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = color(5);//"\u001B[34m";
+    public static final String ANSI_WHITE = color(0);//"\u001B[30m";
+    public static final String ANSI_PURPLE = color(12);//"\u001B[95m";
+    public static final String ANSI_YELLOW = color(10);//"\u001B[93m";
+    public static final String ANSI_RED = color(13);//"\u001B[31m";
 
 
     private static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss.SSS");
@@ -52,7 +49,6 @@ public class LogUtils {
 //        index = (index % colorIndex.length + colorIndex.length) % colorIndex.length;
         return "\u001B["
                 + colorIndex[index]
-//                + index
                 + "m";
     }
 
@@ -79,54 +75,58 @@ public class LogUtils {
     }
 
     /**
+     * @param colorStr
      * @param stackIndex 1:当前位置，2：上级栈位置，0：logcat 的位置（没有意义）
      */
-    public static void d(CharSequence msg, int stackIndex) {
+    public static void logWithColorStr(Object msg, String colorStr, int stackIndex) {
         StackTraceElement ste = new Throwable().getStackTrace()[stackIndex];
         String log = build(msg, ste);
-        System.out.println(ANSI_WHITE
-                + (SHOWCOLORINFO ? String.format("ANSI_WHITE: %4s ", ANSI_WHITE.substring(2)) : "")
+        System.out.println(colorStr
+                + (SHOWCOLORINFO ? String.format("LOG      : %4s  ", colorStr.substring(2, colorStr.length() - 1)) : "")
                 + log + ANSI_RESET);
     }
 
     public static void v(Object msg) {
-        StackTraceElement ste = new Throwable().getStackTrace()[1];
-        String log = build(msg, ste);
-        System.out.println(ANSI_BLUE
-                + (SHOWCOLORINFO ? String.format("ANSI_BLUE:  %4s ", ANSI_BLUE.substring(2)) : "")
-                + log + ANSI_RESET);
+        logWithColorStr(msg, ANSI_BLUE, 2);
+    }
+
+    public static void v(Object msg, int stackIndex) {
+        logWithColorStr(msg, ANSI_BLUE, stackIndex + 1);
     }
 
     public static void d(Object msg) {
-        StackTraceElement ste = new Throwable().getStackTrace()[1];
-        String log = build(msg, ste);
-        System.out.println(ANSI_WHITE
-                + (SHOWCOLORINFO ? String.format("ANSI_WHITE: %4s ", ANSI_WHITE.substring(2)) : "")
-                + log + ANSI_RESET);
+        logWithColorStr(msg, ANSI_WHITE, 2);
+    }
+
+    /**
+     * @param stackIndex 1:当前位置，2：上级栈位置，0：logcat 的位置（没有意义）
+     */
+    public static void d(Object msg, int stackIndex) {
+        logWithColorStr(msg, ANSI_WHITE, stackIndex + 1);
     }
 
     public static void i(Object msg) {
-        StackTraceElement ste = new Throwable().getStackTrace()[1];
-        String log = build(msg, ste);
-        System.out.println(ANSI_YELLOW
-                + (SHOWCOLORINFO ? String.format("ANSI_YELLOW:%4s ", ANSI_YELLOW.substring(2)) : "")
-                + log + ANSI_RESET);
+        logWithColorStr(msg, ANSI_YELLOW, 2);
+    }
+
+    public static void i(Object msg, int stackIndex) {
+        logWithColorStr(msg, ANSI_YELLOW, stackIndex + 1);
     }
 
     public static void w(Object msg) {
-        StackTraceElement ste = new Throwable().getStackTrace()[1];
-        String log = build(msg, ste);
-        System.out.println(ANSI_PURPLE
-                + (SHOWCOLORINFO ? String.format("ANSI_PURPLE:%4s ", ANSI_PURPLE.substring(2)) : "")
-                + log + ANSI_RESET);
+        logWithColorStr(msg, ANSI_PURPLE, 2);
+    }
+
+    public static void w(Object msg, int stackIndex) {
+        logWithColorStr(msg, ANSI_PURPLE, stackIndex + 1);
     }
 
     public static void e(Object msg) {
-        StackTraceElement ste = new Throwable().getStackTrace()[1];
-        String log = build(msg, ste);
-        System.out.println(ANSI_RED
-                + (SHOWCOLORINFO ? String.format("ANSI_RED:   %4s ", ANSI_RED.substring(2)) : "")
-                + log + ANSI_RESET);
+        logWithColorStr(msg, ANSI_RED, 2);
+    }
+
+    public static void e(Object msg, int stackIndex) {
+        logWithColorStr(msg, ANSI_RED, stackIndex + 1);
     }
 
     /**
@@ -154,11 +154,11 @@ public class LogUtils {
                 buf.append("):");
             }
         }
-        StringBuilderUtils.multiply(buf," ",45 - buf.length());
+        StringBuilderUtils.multiply(buf, " ", 45 - buf.length());
 //        buf.append("[").append(Thread.currentThread().getId()).append("]");
         String threadName = Thread.currentThread().getName();
         buf.append("[").append(threadName).append("]: ");
-        StringBuilderUtils.multiply(buf," ",17 - threadName.length());
+        StringBuilderUtils.multiply(buf, " ", 17 - threadName.length());
         buf.append(log);
         return buf.toString();
     }

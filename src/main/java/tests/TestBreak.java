@@ -1,4 +1,4 @@
-package test_java;
+package tests;
 
 import utils.LogUtils;
 

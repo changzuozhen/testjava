@@ -14,7 +14,7 @@ public class LockDemo {
                 lock.lock();
                 try {
                     Thread.sleep(500);
-                    LogUtils.d("i:"+ finalI);
+                    LogUtils.d("i:" + finalI);
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

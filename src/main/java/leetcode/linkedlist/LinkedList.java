@@ -4,6 +4,7 @@ import leetcode.commonutils.Utils;
 import utils.LogUtils;
 
 import java.io.IOException;
+
 class ListNode {
     int val;
     ListNode next;

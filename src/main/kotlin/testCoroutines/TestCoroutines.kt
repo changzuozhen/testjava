@@ -13,14 +13,14 @@ import kotlin.coroutines.ContinuationInterceptor
  * https://mp.weixin.qq.com/s/JR0APULIDOoz9kLVBgM9zQ
  */
 suspend fun main() {
-//    defaultTest()
+    defaultTest()
 //    atomicTest()
 //    lazyTest()
 //    undispatchedTest()
 //    continuationInterceptorTest()
 //    continuationInterceptorTest2()
 //    testDispatcher()
-    testError()
+//    testError()
 }
 
 /**

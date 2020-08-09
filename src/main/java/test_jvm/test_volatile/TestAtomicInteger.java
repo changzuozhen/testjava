@@ -5,9 +5,9 @@ import utils.LogUtils;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestAtomicInteger {
-    public  AtomicInteger inc = new AtomicInteger();
+    public AtomicInteger inc = new AtomicInteger();
 
-    public  void increase() {
+    public void increase() {
         inc.getAndIncrement();
         LogUtils.d(Thread.currentThread() + "inc:" + inc);
     }

@@ -15,7 +15,7 @@ class Base {
         //do something
     }
 
-    static void staticMethod(Base base,String str1) {
+    static void staticMethod(Base base, String str1) {
         //do something
     }
 
