@@ -7,6 +7,9 @@ data class Book(var name: String, var author: String, var price: Int) {
 }
 
 fun main() {
+
+    // ARAL
+
     testApply() //apply in:this out:this
     testRun() //run in:this out:lam
     testAlso() //also in:it out:this
