@@ -37,7 +37,7 @@ public class LogUtils {
     };
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLUE = color(5);//"\u001B[34m";
-    public static final String ANSI_WHITE = color(0);//"\u001B[30m";
+    public static final String ANSI_WHITE = color(3);//"\u001B[30m";
     public static final String ANSI_PURPLE = color(12);//"\u001B[95m";
     public static final String ANSI_YELLOW = color(10);//"\u001B[93m";
     public static final String ANSI_RED = color(13);//"\u001B[31m";
