@@ -119,5 +119,6 @@ public class PrintTree {
         line = "[1, 2, 3, 4, 5, 6]";
         TreeNode root = (TreeNode) Wrapper.stringToTreeNode(line);
         Wrapper.prettyPrintTree((TreeNode) root);
+        LogUtils.d(Wrapper.treeNodeToString((TreeNode) root));
     }
 }

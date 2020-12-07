@@ -1,10 +1,16 @@
-package tests;
+package 数学;
 
 import utils.LogUtils;
 
-class TestFabonacci {
+class TestFibonacci {
 
-    public static int calFabonaci(int index) {
+    /**
+     * 斐波那契
+     * Fibonacci
+     * @param index
+     * @return
+     */
+    public static int calFibonacci(int index) {
         if (index < 2) {
             return 1;
         }
@@ -19,7 +25,7 @@ class TestFabonacci {
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
-            LogUtils.d("⚠️main() called with: Fabonaci(" + i + ") = [" + calFabonaci(i) + "]");
+            LogUtils.d("⚠️main() called with: Fibonacci(" + i + ") = [" + calFibonacci(i) + "]");
         }
     }
 }
