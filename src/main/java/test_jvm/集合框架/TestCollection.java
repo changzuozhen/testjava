@@ -2,15 +2,61 @@ package test_jvm.集合框架;
 
 import utils.LogUtils;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 public class TestCollection {
     public static void main(String[] args) {
-        testArrayList();
-        testLinkedList();
-        testStack();
+//        testArrayList();
+//        testLinkedList();
+//        testStack();
+        testHashMap();
+        testTreeMap();
+        testLinkedHashMap();
+    }
+
+    private static void testHashMap() {
+        LogUtils.w("testHashMap() called");
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("c", "c1");
+        hashMap.put("c", "c2");
+        hashMap.put("a", "a1");
+        hashMap.put("a", "a2");
+        hashMap.put("d", "d2");
+        hashMap.put("b", "b1");
+        hashMap.put("b", "b2");
+        LogUtils.d("testHashMap() called" + hashMap);
+    }
+
+    private static void testTreeMap() {
+        //TreeMap是SortedMap的实现类，是一个红黑树的数据结构，每个key-value对作为红黑树的一个节点。
+        // TreeMap存储key-value对时，需要根据key对节点进行排序。
+        LogUtils.w("testTreeMap() called");
+        TreeMap<String, String> hashMap = new TreeMap<>();
+        hashMap.put("c", "c1");
+        hashMap.put("c", "c2");
+        hashMap.put("a", "a1");
+        hashMap.put("a", "a2");
+        hashMap.put("d", "d2");
+        hashMap.put("b", "b1");
+        hashMap.put("b", "b2");
+        LogUtils.d("testTreeMap() called" + hashMap);
+    }
+
+    private static void testLinkedHashMap() {
+        // LinkedHashMap使用双向链表来维护key-value对的次序（其实只需要考虑key的次序即可），
+        // 该链表负责维护Map的迭代顺序，与插入顺序一致，因此性能比HashMap低，但在迭代访问Map里的全部元素时有较好的性能。
+        LogUtils.w("testLinkedHashMap() called");
+        LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
+        hashMap.put("c", "c1");
+        hashMap.put("c", "c2");
+        hashMap.put("a", "a1");
+        hashMap.put("a", "a2");
+        hashMap.put("d", "d2");
+        hashMap.put("b", "b1");
+        hashMap.put("b", "b2");
+        LogUtils.d("testLinkedHashMap() called" + hashMap);
+
+
     }
 
     static void testArrayList() {

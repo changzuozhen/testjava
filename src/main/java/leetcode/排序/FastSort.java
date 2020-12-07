@@ -1,4 +1,4 @@
-package tests;
+package leetcode.排序;
 
 /**
  * 快速排序
@@ -6,6 +6,7 @@ package tests;
 class FastSort {
     public static int[] sort(int[] array, int start, int end) {
 
+        // [start,end]
         int p = end;
         int a = start;
         int b = end - 1;
@@ -27,7 +28,7 @@ class FastSort {
 
         swip(array, a, p);
         sort(array, start, a - 1);
-        sort(array, a + 1, end - 1);
+        sort(array, a + 1, end);
         return array;
     }
 
@@ -42,7 +43,8 @@ class FastSort {
     }
 
     private static void test() {
-        int[] testArray = new int[]{3, 5, 8, 1, 2, 9, 4, 7, 6};
+//        int[] testArray = new int[]{3, 5, 8, 1, 2, 9, 4, 7, 6};
+        int[] testArray = new int[]{3, 5, 4, 1, 2, 8, 9, 7, 6};
         sort(testArray, 0, testArray.length - 1);
         for (int i : testArray) {
             System.out.println(i);
