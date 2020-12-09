@@ -9,9 +9,10 @@ public class TestCollection {
 //        testArrayList();
 //        testLinkedList();
 //        testStack();
-        testHashMap();
-        testTreeMap();
-        testLinkedHashMap();
+//        testHashMap();
+//        testTreeMap();
+//        testLinkedHashMap();
+        testSet();
     }
 
     private static void testHashMap() {
@@ -148,4 +149,29 @@ public class TestCollection {
 //        LogUtils.d("stack:" + stack);
 //        LogUtils.d("stack:" + stack);
     }
+
+    private static void testSet() {
+        TreeSet<Integer> set = new TreeSet<>();
+        set.add(1);
+        LogUtils.d("testSet() called " + set.stream().anyMatch(integer -> integer > 3));
+        set.add(3);
+        LogUtils.d("testSet() called " + set.stream().anyMatch(integer -> integer > 3));
+        set.add(4);
+        LogUtils.d("testSet() called " + set.stream().anyMatch(integer -> integer > 3));
+
+        LogUtils.d("testSet() called " + set);
+        set.remove(4);
+        LogUtils.d("testSet() called " + set);
+        LogUtils.d("testSet() set.contains(4)  " + set.contains(4));
+
+        set.add(2);
+        set.add(4);
+        set.add(5);
+        LogUtils.d("testSet() called " + set);//[1, 2, 3, 4, 5]
+        LogUtils.d("testSet() set.floor(3)  " + set.floor(3));          // 3    <=
+        LogUtils.d("testSet() set.lower(3)  " + set.lower(3));          // 2    <
+        LogUtils.d("testSet() set.ceiling(3)  " + set.ceiling(3));      // 3    >=
+        LogUtils.d("testSet() set.higher(3)  " + set.higher(3));        // 4    >
+    }
+
 }
