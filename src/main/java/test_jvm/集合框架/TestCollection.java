@@ -5,6 +5,8 @@ import utils.LogUtils;
 import java.util.*;
 
 public class TestCollection {
+    private static final String TAG = "TestCollection";
+
     public static void main(String[] args) {
 //        testArrayList();
 //        testLinkedList();
@@ -12,7 +14,8 @@ public class TestCollection {
 //        testHashMap();
 //        testTreeMap();
 //        testLinkedHashMap();
-        testSet();
+//        testSet();
+        testIntList();
     }
 
     private static void testHashMap() {
@@ -174,4 +177,16 @@ public class TestCollection {
         LogUtils.d("testSet() set.higher(3)  " + set.higher(3));        // 4    >
     }
 
+    private static void testIntList() {
+        int[] testIntList = new int[10];
+        int[][] testIntList2 = {{1, 0}, {0, 1}, {0, -1}, {-1, 0}};
+        LogUtils.d("⚠️testIntList() called " + testIntList.length);
+        for (int i : testIntList) {
+            LogUtils.d("⚠️testIntList() called " + i);
+        }
+        LogUtils.d("⚠️testIntList2() called " + testIntList2.length);
+        for (int[] i : testIntList2) {
+            LogUtils.d("⚠️testIntList2() called " + i[0] + " " + i[1]);
+        }
+    }
 }

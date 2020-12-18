@@ -1,22 +1,11 @@
-package leetcode.tree;
+package leetcode.tree.base;
 
 import utils.LogUtils;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-        val = x;
-    }
-}
-
-class Wrapper {
+public class TreeUtils {
 
     public static String treeNodeToString(TreeNode root) {
         if (root == null) {
@@ -85,7 +74,11 @@ class Wrapper {
         return root;
     }
 
-    public static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
+    public static void prettyPrintTree(TreeNode node) {
+        prettyPrintTree(node, "", true);
+    }
+
+    private static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
         if (node == null) {
             LogUtils.d("Empty leetcode.tree");
             return;
@@ -100,25 +93,5 @@ class Wrapper {
         if (node.left != null) {
             prettyPrintTree(node.left, prefix + (isLeft ? "    " : "│   "), true);
         }
-    }
-
-    public static void prettyPrintTree(TreeNode node) {
-        prettyPrintTree(node, "", true);
-    }
-}
-
-public class PrintTree {
-    public static void main(String[] args) throws IOException {
-        String line;
-//        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//        while ((line = in.readLine()) != null) {
-//            TreeNode root = (TreeNode) Wrapper.stringToTreeNode(line);
-//            Wrapper.prettyPrintTree((Wrapper.TreeNode) root);
-//        }
-
-        line = "[1, 2, 3, 4, 5, 6]";
-        TreeNode root = (TreeNode) Wrapper.stringToTreeNode(line);
-        Wrapper.prettyPrintTree((TreeNode) root);
-        LogUtils.d(Wrapper.treeNodeToString((TreeNode) root));
     }
 }
