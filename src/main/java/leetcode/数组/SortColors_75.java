@@ -16,32 +16,15 @@ import java.util.Arrays;
  */
 public class SortColors_75 {
     public static void main(String[] args) {
-//        int[] nums = new int[]{2, 0, 2, 1, 1, 0};
-        int[] nums = new int[]{2,0,2,1,1,0};
-        LogUtils.d(Arrays.toString(nums));
-        sortColors(nums);
-        LogUtils.d(Arrays.toString(nums));
-    }
+        Solution solution = new Solution();
 
-    public static int[] sortColors(int[] nums) {
-        int zero = -1;// nums[0...zero] == 0
-        int two = nums.length;// nums[two...n-1] == 2
-        for (int i = 0; i < two; ) {
-            if (nums[i] == 0) {
-                zero++;
-                nums[i] = nums[zero];
-                nums[zero] = 0;
-                i++;
-            } else if (nums[i] == 2) {
-                two--;
-                nums[i] = nums[two];
-                nums[two] = 2;
-            } else {
-                i++;
-            }
-        }
+        int[] nums = new int[]{2, 0, 2, 1, 1, 0};
+        solution.sortColors(nums);
+        LogUtils.d(Arrays.toString(nums));
 
-        return nums;
+        nums = new int[]{2, 0, 2, 1, 1, 0};
+        solution.sortColors(nums);
+        LogUtils.d(Arrays.toString(nums));
     }
 
     public static int[] swap(int[] nums, int a, int b) {
@@ -52,18 +35,20 @@ public class SortColors_75 {
         return nums;
     }
 
-    class Solution {
+    static class Solution {
         public void sortColors(int[] nums) {
             int zero = -1;// nums[0...zero] == 0
             int two = nums.length;// nums[two...n-1] == 2
             for (int i = 0; i < two; ) {
                 if (nums[i] == 0) {
                     zero++;
+                    // swap i zero
                     nums[i] = nums[zero];
                     nums[zero] = 0;
                     i++;
                 } else if (nums[i] == 2) {
                     two--;
+                    // swap i two
                     nums[i] = nums[two];
                     nums[two] = 2;
                 } else {

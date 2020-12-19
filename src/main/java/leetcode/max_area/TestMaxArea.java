@@ -36,13 +36,16 @@ public class TestMaxArea {
         int area = 1;
         for (int[] d : direction)
             area += dfs(grid, r + d[0], c + d[1]);
-
+//        for (int i = 0; i < direction.length; i++) {
+//            area += dfs2(grid, r + direction[i][0], c + direction[i][1]);
+//        }
         return area;
     }
 
     public static void main(String[] args) {
         TestMaxArea tool = new TestMaxArea();
-        int[][] area = {{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+        int[][] area = {
+                {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
                 {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
                 {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
@@ -50,7 +53,6 @@ public class TestMaxArea {
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}};
-
         LogUtils.d("max:" + tool.maxAreaOfIsland(area));
     }
 
