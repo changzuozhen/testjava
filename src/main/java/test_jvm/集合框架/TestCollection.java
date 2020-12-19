@@ -15,7 +15,8 @@ public class TestCollection {
 //        testTreeMap();
 //        testLinkedHashMap();
 //        testSet();
-        testIntList();
+//        testPriorityQueue();
+//        testIntList();
     }
 
     private static void testHashMap() {
@@ -67,13 +68,34 @@ public class TestCollection {
         LogUtils.w("testArrayList() called");
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("a");
-        arrayList.add("b");
         arrayList.add("c");
+        arrayList.add("f");
+        arrayList.add("e");
+        arrayList.add("d");
+        arrayList.add("b");
         LogUtils.d("list:" + arrayList);
         LogUtils.d("list size():" + arrayList.size());
         LogUtils.d("list remove(0):" + arrayList.remove(0));
         LogUtils.d("list size():" + arrayList.size());
         LogUtils.d("list:" + arrayList);
+        arrayList.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        LogUtils.d("list sort:" + arrayList);
+
+        ArrayList<Integer> intList = new ArrayList<>();
+        intList.add(1);
+        intList.add(3);
+        intList.add(5);
+        intList.add(2);
+        intList.add(4);
+        intList.sort((o1, o2) -> o1 - o2);
+        LogUtils.d("testArrayList() called" + intList);
+        intList.sort((o1, o2) -> o2 - o1);
+        LogUtils.d("testArrayList() called" + intList);
     }
 
     static void testLinkedList() {
@@ -175,6 +197,48 @@ public class TestCollection {
         LogUtils.d("testSet() set.lower(3)  " + set.lower(3));          // 2    <
         LogUtils.d("testSet() set.ceiling(3)  " + set.ceiling(3));      // 3    >=
         LogUtils.d("testSet() set.higher(3)  " + set.higher(3));        // 4    >
+
+    }
+
+    private static void testPriorityQueue() {
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<Integer>();
+        addTestData(priorityQueue);
+
+        StringBuilder sb = new StringBuilder("");
+        for (Integer integer : priorityQueue) {
+            sb.append(integer).append(" ");
+        }
+        LogUtils.d("testPriorityQueue() called " + sb);
+
+        pollAndDisplay(priorityQueue);
+
+        PriorityQueue<Integer> priorityQueue2 = new PriorityQueue<>((o1, o2) -> o1 - o2);
+        addTestData(priorityQueue2);
+        pollAndDisplay(priorityQueue2);
+
+        PriorityQueue<Integer> priorityQueue3 = new PriorityQueue<>((o1, o2) -> o2 - o1);
+        addTestData(priorityQueue3);
+        pollAndDisplay(priorityQueue3);
+    }
+
+    private static void pollAndDisplay(PriorityQueue<Integer> priorityQueue) {
+        StringBuilder sb = new StringBuilder("");
+        while (!priorityQueue.isEmpty()) {
+            sb.append(priorityQueue.poll()).append(" ");
+        }
+        LogUtils.d("testPriorityQueue() called " + sb);
+    }
+
+    private static void addTestData(PriorityQueue<Integer> priorityQueue) {
+        priorityQueue.add(1);
+        priorityQueue.add(3);
+        priorityQueue.add(5);
+        priorityQueue.add(7);
+        priorityQueue.add(9);
+        priorityQueue.add(0);
+        priorityQueue.add(2);
+        priorityQueue.add(6);
+        priorityQueue.add(8);
     }
 
     private static void testIntList() {
