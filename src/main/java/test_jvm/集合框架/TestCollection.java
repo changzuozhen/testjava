@@ -8,15 +8,15 @@ public class TestCollection {
     private static final String TAG = "TestCollection";
 
     public static void main(String[] args) {
-//        testArrayList();
-//        testLinkedList();
-//        testStack();
-//        testHashMap();
-//        testTreeMap();
-//        testLinkedHashMap();
-//        testSet();
-//        testPriorityQueue();
-//        testIntList();
+        testArrayList();
+        testLinkedList();
+        testStack();
+        testHashMap();
+        testTreeMap();
+        testLinkedHashMap();
+        testSet();
+        testPriorityQueue();
+        testIntList();
     }
 
     private static void testHashMap() {
@@ -29,6 +29,10 @@ public class TestCollection {
         hashMap.put("d", "d2");
         hashMap.put("b", "b1");
         hashMap.put("b", "b2");
+        LogUtils.d("testHashMap() called" + hashMap);
+        hashMap.remove("b");
+        LogUtils.d("testHashMap() called" + hashMap);
+        hashMap.replace("d", "d3");
         LogUtils.d("testHashMap() called" + hashMap);
     }
 
@@ -176,6 +180,7 @@ public class TestCollection {
     }
 
     private static void testSet() {
+        LogUtils.w("testSet() called");
         TreeSet<Integer> set = new TreeSet<>();
         set.add(1);
         LogUtils.d("testSet() called " + set.stream().anyMatch(integer -> integer > 3));
@@ -201,6 +206,7 @@ public class TestCollection {
     }
 
     private static void testPriorityQueue() {
+        LogUtils.w("testPriorityQueue() called");
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<Integer>();
         addTestData(priorityQueue);
 
@@ -208,25 +214,25 @@ public class TestCollection {
         for (Integer integer : priorityQueue) {
             sb.append(integer).append(" ");
         }
-        LogUtils.d("testPriorityQueue() called " + sb);
+        LogUtils.d("遍历 " + sb);
 
-        pollAndDisplay(priorityQueue);
+        pollAndDisplay("默认", priorityQueue);
 
         PriorityQueue<Integer> priorityQueue2 = new PriorityQueue<>((o1, o2) -> o1 - o2);
         addTestData(priorityQueue2);
-        pollAndDisplay(priorityQueue2);
+        pollAndDisplay("生序", priorityQueue2);
 
         PriorityQueue<Integer> priorityQueue3 = new PriorityQueue<>((o1, o2) -> o2 - o1);
         addTestData(priorityQueue3);
-        pollAndDisplay(priorityQueue3);
+        pollAndDisplay("降序", priorityQueue3);
     }
 
-    private static void pollAndDisplay(PriorityQueue<Integer> priorityQueue) {
+    private static void pollAndDisplay(String msg, PriorityQueue<Integer> priorityQueue) {
         StringBuilder sb = new StringBuilder("");
         while (!priorityQueue.isEmpty()) {
             sb.append(priorityQueue.poll()).append(" ");
         }
-        LogUtils.d("testPriorityQueue() called " + sb);
+        LogUtils.d(msg + " " + sb);
     }
 
     private static void addTestData(PriorityQueue<Integer> priorityQueue) {
@@ -242,6 +248,7 @@ public class TestCollection {
     }
 
     private static void testIntList() {
+        LogUtils.w("⚠️testIntList() called");
         int[] testIntList = new int[10];
         int[][] testIntList2 = {{1, 0}, {0, 1}, {0, -1}, {-1, 0}};
         LogUtils.d("⚠️testIntList() called " + testIntList.length);
