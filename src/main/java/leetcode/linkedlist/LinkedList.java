@@ -4,6 +4,7 @@ import leetcode.commonutils.Utils;
 import utils.LogUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 class ListNode {
     int val;
@@ -11,6 +12,13 @@ class ListNode {
 
     ListNode(int x) {
         val = x;
+    }
+
+    public ListNode revert( ListNode head){
+
+
+
+        return head;
     }
 }
 
