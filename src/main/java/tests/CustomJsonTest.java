@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Stack;
 
 public class CustomJsonTest {
-
     public static Map<String, Object> parseJson(String jsonString) {
         Map<String, Object> map = new HashMap<String, Object>();
         Stack<Map<String, Object>> stack = new Stack<Map<String, Object>>();
@@ -15,7 +14,7 @@ public class CustomJsonTest {
             char c = jsonString.charAt(i);
             if (c == '{' || c == '[') {
                 Map<String, Object> newMap = new HashMap<String, Object>();
-                stack.peek().put(String.valueOf(i), newMap);
+                stack.peek().put(getLastKey(stack.peek()), newMap);
                 stack.push(newMap);
             } else if (c == '}' || c == ']') {
                 stack.pop();
@@ -26,7 +25,7 @@ public class CustomJsonTest {
                 }
                 if (j < jsonString.length() && (jsonString.charAt(j) == '{' || jsonString.charAt(j) == '[')) {
                     Map<String, Object> newMap = new HashMap<String, Object>();
-                    stack.peek().put(String.valueOf(i), newMap);
+                    stack.peek().put(getLastKey(stack.peek()), newMap);
                     stack.push(newMap);
                 }
             } else if (c == ':') {
@@ -36,7 +35,7 @@ public class CustomJsonTest {
                 }
                 if (j < jsonString.length() && jsonString.charAt(j) == '{') {
                     Map<String, Object> newMap = new HashMap<String, Object>();
-                    stack.peek().put(String.valueOf(i), newMap);
+                    stack.peek().put(getLastKey(stack.peek()), newMap);
                     stack.push(newMap);
                 }
             } else if (Character.isDigit(c)) {
@@ -45,7 +44,7 @@ public class CustomJsonTest {
                     j++;
                 }
                 String numberString = jsonString.substring(i, j);
-                stack.peek().put(String.valueOf(i), Integer.parseInt(numberString));
+                stack.peek().put(getLastKey(stack.peek()), Integer.parseInt(numberString));
                 i = j - 1;
             } else if (c == '\"') {
                 int j = i + 1;
@@ -53,7 +52,7 @@ public class CustomJsonTest {
                     j++;
                 }
                 String stringLiteral = jsonString.substring(i + 1, j);
-                stack.peek().put(String.valueOf(i), stringLiteral);
+                stack.peek().put(stringLiteral, null);
                 i = j;
             }
             i++;
@@ -61,6 +60,10 @@ public class CustomJsonTest {
         return map;
     }
 
+    private static String getLastKey(Map<String, Object> map) {
+        int index = map.size();
+        return String.valueOf(index);
+    }
     public static void main(String[] args) {
         String jsonString = "{\"name\":\"John\",\"age\":30,\"cars\":[{\"name\":\"Ford\",\"models\":[{\"name\":\"Fiesta\"},{\"name\":\"Focus\"},{\"name\":\"Mustang\"}]},{\"name\":\"BMW\",\"models\":[{\"name\":\"320\"},{\"name\":\"X3\"},{\"name\":\"X5\"}]}]}";
         Map<String, Object> map = parseJson(jsonString);
