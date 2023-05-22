@@ -18,6 +18,7 @@ public class InterruptDemo {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
+                    LogUtils.d( "InterruptedException:"+e.toString());
                     e.printStackTrace();
                 }
                 super.run();
@@ -30,6 +31,7 @@ public class InterruptDemo {
                 while (true) ;
             }
         };
+        LogUtils.d("start");
         sleepThread.start();
         busyThread.start();
         sleepThread.interrupt();

@@ -19,22 +19,7 @@ public class TestCollection {
         testIntList();
     }
 
-    private static void testHashMap() {
-        LogUtils.w("testHashMap() called");
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("c", "c1");
-        hashMap.put("c", "c2");
-        hashMap.put("a", "a1");
-        hashMap.put("a", "a2");
-        hashMap.put("d", "d2");
-        hashMap.put("b", "b1");
-        hashMap.put("b", "b2");
-        LogUtils.d("testHashMap() called" + hashMap);
-        hashMap.remove("b");
-        LogUtils.d("testHashMap() called" + hashMap);
-        hashMap.replace("d", "d3");
-        LogUtils.d("testHashMap() called" + hashMap);
-    }
+
 
     private static void testTreeMap() {
         //TreeMap是SortedMap的实现类，是一个红黑树的数据结构，每个key-value对作为红黑树的一个节点。
@@ -125,7 +110,7 @@ public class TestCollection {
         LogUtils.d("list:" + linkedList.peek());
 
 
-        LogUtils.i("peekFirst - Retrieves, but does not remove, the last element of this list, or returns null if this list is empty.");
+        LogUtils.i("peekFirst - Retrieves, but does not remove, the first element of this list, or returns null if this list is empty.");
         LogUtils.d("list:" + linkedList.peekFirst());
 
         LogUtils.i("peekLast - Retrieves, but does not remove, the last element of this list, or returns null if this list is empty.");
@@ -177,6 +162,22 @@ public class TestCollection {
         LogUtils.d("stack:" + stack);
 //        LogUtils.d("stack:" + stack);
 //        LogUtils.d("stack:" + stack);
+    }
+    private static void testHashMap() {
+        LogUtils.w("testHashMap() called");
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("c", "c1");
+        hashMap.put("c", "c2");
+        hashMap.put("a", "a1");
+        hashMap.put("a", "a2");
+        hashMap.put("d", "d2");
+        hashMap.put("b", "b1");
+        hashMap.put("b", "b2");
+        LogUtils.d("testHashMap() called" + hashMap);
+        hashMap.remove("b");
+        LogUtils.d("testHashMap() called" + hashMap);
+        hashMap.replace("d", "d3");
+        LogUtils.d("testHashMap() called" + hashMap);
     }
 
     private static void testSet() {

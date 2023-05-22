@@ -93,7 +93,7 @@ public class Condition模拟BlockQueue {
             //获得锁
             lock.lock();
             try {
-                if (size > maxSize) {
+                if (size >= maxSize) {
                     //如果队列满了就阻塞
                     condition.await();
                 }
@@ -118,7 +118,7 @@ public class Condition模拟BlockQueue {
                     }
                 }
                 Object obj = this.obj.remove(0);
-                LogUtils.d("take() called with: obj = [" + obj + "]" + this.obj.size());
+                LogUtils.i("take() called with: obj = [" + obj + "]" + this.obj.size());
                 size--;
                 condition.signal();
                 return obj;
