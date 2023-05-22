@@ -1,5 +1,3 @@
-package utils;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -154,13 +152,19 @@ public class LogUtils {
                 buf.append("):");
             }
         }
-        StringBuilderUtils.multiply(buf, " ", 45 - buf.length());
+        multiply(buf, " ", 45 - buf.length());
 //        buf.append("[").append(Thread.currentThread().getId()).append("]");
         String threadName = Thread.currentThread().getName();
         buf.append("[").append(threadName).append("]: ");
-        StringBuilderUtils.multiply(buf, " ", 17 - threadName.length());
+        multiply(buf, " ", 17 - threadName.length());
         buf.append(log);
         return buf.toString();
     }
 
+    public static StringBuilder multiply(StringBuilder stringBuilder, CharSequence charSequence, int times) {
+        for (int i = 0; i < times; i++) {
+            stringBuilder.append(charSequence);
+        }
+        return stringBuilder;
+    }
 }
