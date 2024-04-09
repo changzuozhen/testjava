@@ -1,4 +1,4 @@
-package tests;
+package test_jvm.集合框架;
 
 import utils.LogUtils;
 

@@ -144,5 +144,32 @@ public class 单链表反转 {
         return head;
     }
 
+    static ListNode iteration_reverse2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        } else {
+            ListNode beg = null;
+//            ListNode mid = head;
+            ListNode end = head.next;
+            //一直遍历
+            while (true) {
+                //修改 mid 所指节点的指向
+                head.next = beg;
+                //此时判断 end 是否为 null，如果成立则退出循环
+                if (end == null) {
+                    break;
+                }
+                //整体向后移动 3 个指针
+                beg = head;
+                head = end;
+                end = end.next;
+            }
+            //最后修改 head 头指针的指向
+//            head = head;
+            return head;
+        }
+    }
+
+
 
 }

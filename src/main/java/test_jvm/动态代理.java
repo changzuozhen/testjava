@@ -12,10 +12,11 @@ class 动态代理 {
         Star star = new RealStar();
         StarHandler handler = new StarHandler(star);
         Star starProxy = (Star) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(), new Class[]{Star.class}, handler);
+        LogUtils.d("代理调用");
         starProxy.signContract();
         starProxy.sing();
         starProxy.getMoney();
-
+        LogUtils.d("直接调用");
         star.signContract();
         star.sing();
         star.getMoney();

@@ -31,7 +31,7 @@ public class CallableThreadTest implements Callable<Integer> {
     public Integer call() throws Exception {
         int i = 0;
         for (; i < 10; i++) {
-            LogUtils.d(Thread.currentThread().getName() + " " + i);
+            LogUtils.d(Thread.currentThread().getName() + " -> " + i);
         }
         return i;
     }

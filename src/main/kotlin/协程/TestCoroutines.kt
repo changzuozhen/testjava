@@ -24,11 +24,23 @@ fun testDelay() {
     /**
     主线程（通过 main() 函数运行的线程）必须等到我们的协程完成，否则程序会在 Hello 被打印之前终止。
      */
-//    Thread.sleep(2000)
+    Thread.sleep(2000)
+    LogUtils.d("after sleep 2000")
     /**
     这是因为我们不在任何协程中。我们可以在 runBlocking {} 包装中使用 delay，它启动了一个协程并等待直到它结束：
      */
-    runBlocking { delay(2000) }
+    runBlocking {
+        GlobalScope.launch {
+            /**
+             * 我们使用了类似 Thread.sleep() 的 delay() 函数，但是它更优异：它 不会阻塞一个线程 ，但是会挂起协程自身。
+             * 当这个协程处于等待状态时该线程会返回线程池中，当等待结束的时候，这个协程会在线程池中的空闲线程上恢复。
+             */
+            delay(500)
+            LogUtils.d("Hello2")
+        }.join()
+        job.join()
+//        delay(2000)
+    }
 //    job.join()
 
     LogUtils.d("Stop")
@@ -76,7 +88,8 @@ fun testChannel() = runBlocking<Unit> {
 
 
 suspend fun main() {
-//    testDelay()
+    testDelay()
 //    testAsync()
-    testChannel()
+//    testChannel()
+
 }

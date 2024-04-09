@@ -6,6 +6,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.CoroutineStart
 import utils.log
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.ContinuationInterceptor
 
@@ -42,13 +43,26 @@ private suspend fun defaultTest() {
 
 
 /**
+2 的打印顺序不一定
+
 18:15:54:237 [main] 1
 18:15:54:287 [DefaultDispatcher-worker-2] 2
 18:15:54:287 [main] 4
 18:15:54:288 [main] 5
+
+[main]:              14:51:24:126 [main] 1
+[main]:              14:51:24:222 [main] 4
+[main]:              14:51:24:225 [main] 5
+[DefaultDispatcher-worker-1]: 14:51:24:225 [DefaultDispatcher-worker-1] 2
+
+
+
+[main]:              14:51:41:334 [main] 1
+[main]:              14:51:41:436 [main] 4
+[DefaultDispatcher-worker-1]: 14:51:41:446 [DefaultDispatcher-worker-1] 2
+[main]:              14:51:41:446 [main] 5
  */
 private suspend fun atomicTest() {
-
     log(1)
     val job = GlobalScope.launch(start = CoroutineStart.ATOMIC) {
         log(2)
@@ -62,11 +76,6 @@ private suspend fun atomicTest() {
     log(5)
 }
 
-/**
-18:16:08:938 [main] 1
-18:16:08:981 [main] 4
-18:16:08:981 [main] 5
- */
 private suspend fun lazyTest() {
 
     log(1)
@@ -75,10 +84,25 @@ private suspend fun lazyTest() {
         delay(100)
         log(3)
     }
-    job.cancel()
+
     log(4)
+
+    /**
+    18:16:08:938 [main] 1
+    18:16:08:981 [main] 4
+    18:16:08:981 [main] 5
+     */
+//    job.cancel()
+    /**
+     * [main]:              15:10:14:797 [main] 1
+     * [main]:              15:10:14:873 [main] 4
+     * [DefaultDispatcher-worker-2]: 15:10:14:916 [DefaultDispatcher-worker-2] 2
+     * [DefaultDispatcher-worker-2]: 15:10:15:036 [DefaultDispatcher-worker-2] 3
+     * [DefaultDispatcher-worker-2]: 15:10:15:038 [DefaultDispatcher-worker-2] 5
+     */
     job.start()
-//    job.join()
+    job.join()
+
     log(5)
 }
 
@@ -209,7 +233,7 @@ suspend fun testError() {
     var i = 0
     Executors.newFixedThreadPool(10)
         .asCoroutineDispatcher().use { dispatcher ->
-            List(1000000) {
+            List(10000) {
                 GlobalScope.launch(dispatcher) {
                     i++
                 }
@@ -218,4 +242,18 @@ suspend fun testError() {
             }
         }
     log(i)
+
+
+    val counter = AtomicInteger(0)
+    Executors.newFixedThreadPool(10)
+        .asCoroutineDispatcher().use { dispatcher ->
+            List(10000) {
+                GlobalScope.launch(dispatcher) {
+                    counter.incrementAndGet()
+                }
+            }.forEach {
+                it.join()
+            }
+        }
+    log(counter.get())
 }

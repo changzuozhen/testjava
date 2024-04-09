@@ -1,4 +1,4 @@
-package tests;
+package test_jvm;
 
 import utils.LogUtils;
 
@@ -19,14 +19,17 @@ public class TestExtends {
 
     public static void main(String... args) {
         Base base = new Derived();
+
         LogUtils.d("成员变量是无法实现多态的"); // 成员变量是无法实现多态的
         LogUtils.d("Base base.a:" + base.a); // Base base.a:1
         LogUtils.d("Base base.s:" + base.s); // Base base.s:1
-        base.log(); // Derived a:2
-        base.slog(); // Base s:1
-        LogUtils.d("Derived base.a:" + ((Derived) base).a); // Derived base.a:2
-        LogUtils.d("Derived base.s:" + ((Derived) base).s); // Derived base.s:2
-        ((Derived) base).slog(); // Derived s:2
+        LogUtils.d("Derived ((Derived) base).a:" + ((Derived) base).a); // Derived ((Derived) base).a:2
+        LogUtils.d("Derived ((Derived) base).s:" + ((Derived) base).s); // Derived ((Derived) base).s:2
+        LogUtils.d("成员方法有多态，静态方法需要指定 类型才可以调用到特定的方法"); // 成员方法有多态，静态方法需要指定 类型才可以调用到特定的方法
+        base.log(); // Derived log a:2 ,s:2
+        base.slog(); // Base slog s:1
+        ((Derived) base).log(); // Derived log a:2 ,s:2
+        ((Derived) base).slog(); // Derived slog s:2
 //        HashMap3<String, String> hashMap = new HashMap3<String, String>();
 //        for (int i = 0; i < 20; i++) {
 //            hashMap.put("" + i, "a" + i);
@@ -39,11 +42,11 @@ public class TestExtends {
         public int a = 1;
 
         public static void slog() {
-            LogUtils.d("Base s:" + s);
+            LogUtils.d("Base slog s:" + s);
         }
 
         public void log() {
-            LogUtils.d("Base a:" + a);
+            LogUtils.d("Base log a:" + a + " ,s:" + s);
         }
     }
 
@@ -52,11 +55,11 @@ public class TestExtends {
         public int a = 2;
 
         public static void slog() {
-            LogUtils.d("Derived s:" + s);
+            LogUtils.d("Derived slog s:" + s);
         }
 
         public void log() {
-            LogUtils.d("Derived a:" + a);
+            LogUtils.d("Derived log a:" + a + " ,s:" + s);
         }
     }
 }
