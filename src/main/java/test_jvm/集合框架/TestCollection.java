@@ -20,39 +20,6 @@ public class TestCollection {
     }
 
 
-
-    private static void testTreeMap() {
-        //TreeMap是SortedMap的实现类，是一个红黑树的数据结构，每个key-value对作为红黑树的一个节点。
-        // TreeMap存储key-value对时，需要根据key对节点进行排序。
-        LogUtils.w("testTreeMap() called");
-        TreeMap<String, String> hashMap = new TreeMap<>();
-        hashMap.put("c", "c1");
-        hashMap.put("c", "c2");
-        hashMap.put("a", "a1");
-        hashMap.put("a", "a2");
-        hashMap.put("d", "d2");
-        hashMap.put("b", "b1");
-        hashMap.put("b", "b2");
-        LogUtils.d("testTreeMap() called" + hashMap);
-    }
-
-    private static void testLinkedHashMap() {
-        // LinkedHashMap使用双向链表来维护key-value对的次序（其实只需要考虑key的次序即可），
-        // 该链表负责维护Map的迭代顺序，与插入顺序一致，因此性能比HashMap低，但在迭代访问Map里的全部元素时有较好的性能。
-        LogUtils.w("testLinkedHashMap() called");
-        LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
-        hashMap.put("c", "c1");
-        hashMap.put("c", "c2");
-        hashMap.put("a", "a1");
-        hashMap.put("a", "a2");
-        hashMap.put("d", "d2");
-        hashMap.put("b", "b1");
-        hashMap.put("b", "b2");
-        LogUtils.d("testLinkedHashMap() called" + hashMap);
-
-
-    }
-
     static void testArrayList() {
         LogUtils.w("testArrayList() called");
         ArrayList<String> arrayList = new ArrayList<>();
@@ -163,6 +130,7 @@ public class TestCollection {
 //        LogUtils.d("stack:" + stack);
 //        LogUtils.d("stack:" + stack);
     }
+
     private static void testHashMap() {
         LogUtils.w("testHashMap() called");
         HashMap<String, String> hashMap = new HashMap<>();
@@ -177,7 +145,42 @@ public class TestCollection {
         hashMap.remove("b");
         LogUtils.d("testHashMap() called" + hashMap);
         hashMap.replace("d", "d3");
+        hashMap.replace("a", "a3");
         LogUtils.d("testHashMap() called" + hashMap);
+    }
+
+    private static void testTreeMap() {
+        //TreeMap是SortedMap的实现类，是一个红黑树的数据结构，每个key-value对作为红黑树的一个节点。
+        // TreeMap存储key-value对时，需要根据key对节点进行排序。
+        LogUtils.w("testTreeMap() called");
+        TreeMap<String, String> hashMap = new TreeMap<>();
+        hashMap.put("c", "c1");
+        hashMap.put("c", "c2");
+        hashMap.put("a", "a1");
+        hashMap.put("a", "a2");
+        hashMap.put("d", "d2");
+        hashMap.put("b", "b1");
+        hashMap.put("b", "b2");
+        hashMap.remove("b");
+        LogUtils.d("testTreeMap() called" + hashMap);
+    }
+
+    private static void testLinkedHashMap() {
+        // LinkedHashMap使用双向链表来维护key-value对的次序（其实只需要考虑key的次序即可），
+        // 该链表负责维护Map的迭代顺序，与插入顺序一致，因此性能比HashMap低，但在迭代访问Map里的全部元素时有较好的性能。
+        LogUtils.w("testLinkedHashMap() called");
+        LinkedHashMap<String, String> hashMap = new LinkedHashMap<>();
+        hashMap.put("c", "c1");
+        hashMap.put("c", "c2");
+        hashMap.put("a", "a1");
+        hashMap.put("a", "a2");
+        hashMap.put("d", "d2");
+        hashMap.put("b", "b1");
+        hashMap.put("b", "b2");
+        hashMap.remove("b");
+        LogUtils.d("testLinkedHashMap() called" + hashMap);
+
+
     }
 
     private static void testSet() {
@@ -221,7 +224,7 @@ public class TestCollection {
 
         PriorityQueue<Integer> priorityQueue2 = new PriorityQueue<>((o1, o2) -> o1 - o2);
         addTestData(priorityQueue2);
-        pollAndDisplay("生序", priorityQueue2);
+        pollAndDisplay("升序", priorityQueue2);
 
         PriorityQueue<Integer> priorityQueue3 = new PriorityQueue<>((o1, o2) -> o2 - o1);
         addTestData(priorityQueue3);

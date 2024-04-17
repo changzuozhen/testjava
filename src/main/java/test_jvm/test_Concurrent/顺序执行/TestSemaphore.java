@@ -1,4 +1,5 @@
 package test_jvm.test_Concurrent.顺序执行;
+
 import java.util.concurrent.Semaphore;
 
 /**
@@ -10,13 +11,14 @@ import java.util.concurrent.Semaphore;
  * 通过使用信号量来控制线程的执行顺序，可以确保 T1、T2 和 T3 按照指定的顺序执行。
  */
 public class TestSemaphore {
-    private static Semaphore semaphoreT1 = new Semaphore(1);
+    private static Semaphore semaphoreT1 = new Semaphore(0);
     private static Semaphore semaphoreT2 = new Semaphore(0);
     private static Semaphore semaphoreT3 = new Semaphore(0);
 
     public static void main(String[] args) {
         Thread t1 = new Thread(() -> {
             try {
+                semaphoreT1.acquire();
                 // T1 执行任务
                 System.out.println("T1 is executing");
                 Thread.sleep(1000);
@@ -64,5 +66,7 @@ public class TestSemaphore {
         t1.start();
         t2.start();
         t3.start();
+        System.out.println("T1 release");
+        semaphoreT1.release();
     }
 }

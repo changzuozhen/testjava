@@ -1,6 +1,4 @@
-package test_jvm;
-
-import java.util.Scanner;
+package leetcode.everyday;
 
 public class EightQueens{
     public static void main(String[] ards){

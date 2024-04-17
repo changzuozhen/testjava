@@ -1,4 +1,4 @@
-package test_jvm;
+package test_jvm.基础语法;
 
 /**
  * javac Base.java
