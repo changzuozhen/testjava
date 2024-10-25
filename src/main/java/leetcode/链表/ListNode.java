@@ -8,6 +8,10 @@ public class ListNode {
         val = i;
     }
 
+    public ListNode() {
+
+    }
+
 
     public static void printList(ListNode head) {
         ListNode curr = head;

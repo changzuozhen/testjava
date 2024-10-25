@@ -33,6 +33,10 @@ class FastSort {
     }
 
     private static void swip(int[] array, int a, int b) {
+        if (a == b) {
+            System.out.println("skip swip " + a);
+            return;
+        }
         int tmp = array[a];
         array[a] = array[b];
         array[b] = tmp;
@@ -43,8 +47,8 @@ class FastSort {
     }
 
     private static void test() {
-//        int[] testArray = new int[]{3, 5, 8, 1, 2, 9, 4, 7, 6};
-        int[] testArray = new int[]{3, 5, 4, 1, 2, 8, 9, 7, 6};
+        int[] testArray = new int[]{3, 5, 8, 1, 2, 9, 4, 7, 6};
+//        int[] testArray = new int[]{3, 5, 4, 1, 2, 8, 9, 7, 6};
         sort(testArray, 0, testArray.length - 1);
         for (int i : testArray) {
             System.out.println(i);
